@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>購買清單｜日用品庫存</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="home.html"
+          ><span class="brand-mark">日</span><span>日用品庫存</span></a
+        >
+        <nav class="desktop-nav" aria-label="主要導覽">
+          <a href="home.html" data-route-link="home">首頁</a
+          ><a href="inventory.html" data-route-link="inventory">庫存模式</a
+          ><a href="audit.html" data-route-link="audit">盤點模式</a
+          ><a href="shopping.html" data-route-link="shopping">購買清單</a>
+        </nav>
+        <div class="topbar-actions">
+          <label class="region-select" for="region-select"
+            ><span class="sr-only">目前區域</span
+            ><select id="region-select">
+              <option value="台北">台北</option>
+              <option value="台中">台中</option>
+            </select></label
+          ><a class="icon-button" href="settings.html" aria-label="開啟設定"
+            ><span class="material-icons">settings</span></a
+          ><button class="logout-button" type="button" data-logout>登出</button>
+        </div>
+      </header>
+      <main id="main-content" class="main-content"></main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="shopping.js"></script>
+  </body>
+</html>

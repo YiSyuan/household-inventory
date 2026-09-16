@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#276749" />
+  <title>登入｜日用品庫存</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell"><main id="main-content" class="main-content" tabindex="-1">
+    <section class="login-layout">
+      <form class="card login-card" data-login-form>
+        <h1>日用品庫存管理</h1>
+        <p>請輸入 PIN 以管理庫存與盤點資料。</p>
+        <label class="form-field" for="pin-input">PIN
+          <span class="password-field">
+            <input id="pin-input" name="pin" type="password" autocomplete="current-password" maxlength="100" required autofocus />
+            <button class="password-toggle" type="button" data-password-toggle aria-label="顯示 PIN" aria-pressed="false">
+              <span class="material-icons" aria-hidden="true">visibility</span>
+            </button>
+          </span>
+        </label>
+        <button class="primary-button" type="submit">登入</button>
+        <a class="secondary-button" href="shopping.html">查看購買清單</a>
+      </form>
+    </section>
+  </main></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="login.js"></script>
+</body>
+</html>

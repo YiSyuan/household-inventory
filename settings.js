@@ -1,0 +1,12 @@
+import { setupShell, themes, currentTheme, saveTheme, showToast, showActionLoader, hideActionLoader, hidePageLoader } from "./common.js";
+const auth = setupShell("settings");
+if (auth) {
+  const main = document.querySelector("#main-content");
+  const themeOptions = themes.map((theme) => `<option value="${theme.id}"${theme.id === currentTheme() ? " selected" : ""}>${theme.name}</option>`).join("");
+  main.innerHTML = `<div class="page-heading settings-desktop"><h1>設定</h1><p>選擇整個日用品庫存系統使用的主題色。</p></div><div class="page-heading settings-mobile"><h1>設定</h1><p>選擇要調整的系統設定。</p></div><section class="card theme-settings settings-desktop"><label class="form-field" for="theme-select">主題色<select id="theme-select">${themeOptions}</select></label><button class="primary-button" id="save-theme" type="button">儲存主題色</button></section><section class="settings-menu settings-mobile"><article class="card settings-option"><span class="material-icons settings-option-icon">palette</span><div><h2>切換主題色</h2><p>選擇整個系統使用的主題色。</p><label class="form-field" for="mobile-theme-select"><span class="sr-only">主題色</span><select id="mobile-theme-select">${themeOptions}</select></label><button class="primary-button" id="mobile-save-theme" type="button">儲存主題色</button></div></article><a class="card settings-option settings-option-link" href="safety-stock.html"><span class="material-icons settings-option-icon">tune</span><span><h2>安全庫存</h2><p>設定商品安全庫存與管理狀態。</p></span><span class="material-icons settings-option-arrow">chevron_right</span></a><article class="card settings-option settings-option-logout"><span class="material-icons settings-option-icon">logout</span><div><h2>登出</h2><p>離開目前的管理工作階段。</p><button class="secondary-button" id="settings-logout" type="button">登出系統</button></div></article></section>`;
+  hidePageLoader();
+  const save = async (id) => { showActionLoader(); try { saveTheme(document.querySelector(id).value); await new Promise((resolve) => setTimeout(resolve, 180)); showToast("主題色已儲存，所有頁面已套用。", "success"); } finally { hideActionLoader(); } };
+  document.querySelector("#save-theme").addEventListener("click", () => save("#theme-select"));
+  document.querySelector("#mobile-save-theme").addEventListener("click", () => save("#mobile-theme-select"));
+  document.querySelector("#settings-logout").addEventListener("click", () => { sessionStorage.removeItem("inventory-token"); sessionStorage.removeItem("inventory-user"); location.replace("index.html"); });
+}
